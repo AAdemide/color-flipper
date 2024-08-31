@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colour Flipper || Hex</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    
+    <div id="nav">
+      
+        <span id="companyName">Colour Flipper</span>
+        <select name="modes" id="modesSelect" onchange="selectOnChange(event)">
+            <option value="all" >All</option>
+            <option value="monochrome">monochrome</option>
+            <option value="monochrome-dark">monochrome-dark</option>
+            <option value="monochrome-light">monochrome-light</option>
+            <option value="analogic">analogic</option>
+            <option value="complement">complement</option>
+            <option value="analogic-complement">analogic-complement</option>
+            <option value="triad">triad</option>
+            <option value="quad">quad</option>
+        </select>
+        <div id="links">
+          <a id="simpleLink" class="activeLink" href="" onclick="simpleOnclick()">Simple</a>
+          <a id="hexLink" href="#" onclick="hexOnclick()">Hex</a> 
+        </div>
+        
+    </div>
+    <main>
+        <h1 id="heading"">
+                Background Colour: <span id="colour">#0E4E67
+                </span>
+        </h1>
+        <svg xmlns="http://www.w3.org/2000/svg" width="700" height="72" viewBox="0 0 700 72" >
+              <text id="colourName" x="50%" y="50%">Hottest Of Pinks</text>
+        </svg>
+        <button id="changeButton" onclick="cbOnClick()">CLICK ME</button>
+    </main>
+    
+    <script src="index.js"></script>
+
+</body>
+</html>

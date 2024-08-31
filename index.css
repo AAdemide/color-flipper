@@ -1,0 +1,108 @@
+:root {
+  --my-color1: black;
+  --my-color2: white;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+}
+body {
+  color: var(--my-color1);
+  background-color: #ff80ed;
+}
+a {
+  all: unset;
+}
+/* #colour {
+  color: transparent;
+} */
+#nav {
+  background-color: white;
+  box-shadow: 0em 0.4em 0.4em -0.4em grey;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 8rem;
+  margin: 0;
+  color: black;
+}
+#companyName {
+  color: rgb(6, 203, 203);
+}
+#links {
+  display: flex;
+  width: 100px;
+
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+a:hover {
+  color: rgb(6, 203, 203);
+}
+#modesSelect{
+  color: rgb(6, 203, 203);
+  border: 2px solid black;
+  border-radius: 4px;
+  display: none;
+}
+
+.activeLink {
+  padding-bottom: 5px;
+  border-bottom: 2px solid rgb(6, 203, 203);
+}
+
+#heading {
+  background-color: var(--my-color1);
+  color: var(--my-color2);
+  border-radius: 5px;
+  text-align: center;
+  margin: 0;
+  padding: 8px 10px;
+  margin-bottom: 30px;
+  letter-spacing: 3px;
+}
+
+/* what's goin on ( https://stackoverflow.com/questions/13426875/text-border-using-css-border-around-text )  */
+svg {
+  font-size: 55px;
+  font-weight: bolder;
+  letter-spacing: 9px;
+  margin-bottom: 15px;
+}
+
+#colourName {
+  fill: none;
+  stroke: var(--my-color1);
+  stroke-width: 2;
+  /* brain go poof (https://stackoverflow.com/questions/5546346/how-to-place-and-center-text-in-an-svg-rectangle) */
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+#colour {
+  color: #ff80ed;
+}
+
+#changeButton {
+  display: block;
+  background: transparent;
+  color: var(--my-color1);
+  border: 2px solid;
+  padding: 6px 10px;
+  border-radius: 4px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  margin: auto;
+}
+
+main {
+  margin: auto;
+  text-align: center;
+}
