@@ -1,6 +1,3 @@
-// app is very slow.
-//rely on cache and fetch small batches (<20) at a time
-//https://medium.com/@think_ui/visualizing-color-contrast-a-guide-to-using-black-and-white-text-on-colored-backgrounds-14346a2e5680
 const colours = [
   { Colour: "#ff80ed", Name: "Hottest Of Pinks" },
   { Colour: "#065535", Name: "" },
@@ -25,7 +22,6 @@ const colours = [
   { Colour: "#ff00ff", Name: "Magenta" },
   { Colour: "#00ff00", Name: "Green1" },
 ];
-
 let state = false;
 const modes = [
   "monochrome",
@@ -46,7 +42,7 @@ let fetchedData; //stores the fetched data
 let bgState = false;
 let fetchedColors = [];
 
-//utility function that return a random elem from an array
+//utility function that return a random element from an array
 const getRandomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
 //copied from: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 const shuffleArray = (arr) => {
@@ -66,6 +62,17 @@ const hexToRGB = (hex) => {
 
   return rgb;
 };
+
+//https://juicystudio.com/article/luminositycontrastratioalgorithm.php
+//https://stackoverflow.com/questions/1331591/given-a-background-color-black-or-white-text
+//This whole function calculates contrast of bg color to decide if black or white text is best
+const contrastCalcYIQ = (hex) => {
+  const [r, g, b] = hexToRGB(hex);
+  const yiq = (r * 299 + g * 587 + b * 144) / 1000;
+
+  return yiq >= 128 ? true : false;
+};
+
 const simpleOnclick = () => {
   state = false;
   document.getElementById("simpleLink").classList.add("activeLink");
@@ -74,7 +81,6 @@ const simpleOnclick = () => {
 };
 const hexOnclick = () => {
   try {
-    //TODO: put some indicator on which mode is selected.
     state = true;
     document.getElementById("simpleLink").classList.remove("activeLink");
     document.getElementById("hexLink").classList.add("activeLink");
@@ -94,76 +100,14 @@ const hexOnclick = () => {
 const selectOnChange = (e) => {
   
   fetchColorScheme(e.target.value).then(() => {
-    //shuffle array 10 times for good measure
-    // for (let index = 0; index < 10; index++) {
-    //   shuffleArray(colorCache); 
-    // }
-    // console.log(colorCache)
     cbOnClick();
   });
 }
-//https://juicystudio.com/article/luminositycontrastratioalgorithm.php
 
-//https://stackoverflow.com/questions/1331591/given-a-background-color-black-or-white-text
-//This whole function calculates contrast of bg color t decide if black or white text is best
-const contrastCalcYIQ = (hex) => {
-  const [r, g, b] = hexToRGB(hex);
-  // const [r, g, b] = hexToRGB(colour.Colour);
-  const yiq = (r * 299 + g * 587 + b * 144) / 1000;
-
-  return yiq >= 128 ? true : false;
-};
-
-//goal of function is to set the colors by giving the proper value to the colors var
-// const setBG = (data) => {
-//   fetchedData = data;
-//   let fetchedDataS = shuffleArray(fetchedData.colors)
-//   // console.log(colour.Colour + " " + colour.Name);
-//   console.log(data.mode)
-
-//   //get a random color from the fetched data
-//   let rand = getRandomElement(fetchedData.colors);
-//   // let currMode = rand
-//   colour = {
-//     Colour: rand.hex.value,
-//     Name: rand.name.value,
-//   };
-
-//   let count = 0;
-//   while (colorCache.includes(colour.Name) && count <= 100) {
-//     // if (count > 100){
-//     //   // console.log(colour.Colour);
-//     //   // console.log(colorCache);
-//     //   // console.log(fetchedData.colors)
-//     //   // console.log("poop")
-//     //   break
-//     // }
-//     rand = getRandomElement(fetchedData.colors);
-//     rand.name.value;
-//     colour = {
-//       Colour: rand.hex.value,
-//       Name: rand.name.value,
-//     };
-
-//     count++
-//   }
-
-//   console.log("count:", count)
-//   console.log("colorcache includes current color: ", colorCache.includes(colour.Name))
-//   console.log("current color name and hex:", colour.Name, colour.Colour);
-//   console.log(colorCache);
-
-//   colorCache[cacheCounter] = colour.Name;
-//   cacheCounter = (cacheCounter + 1) % 49;
-//   return Promise.resolve();
-// };
 
 const fetchColorScheme = async (mode) => {
-  // console.log(mode)
   colorCache = Array.from({ length: colorCacheSize }, () => {});
   cacheCounter = 0;
-  // let rndSeedCol = getRandomElement(colours).Colour.slice(1);
-  // getURL (single mode) vs getURLAll (current mode)
   const getURL = () =>
     `https://www.thecolorapi.com/scheme?hex=${getRandomElement(
       colours
@@ -204,7 +148,7 @@ const fetchColorScheme = async (mode) => {
     )
   );
 };
-
+//function handles re-rendering of app
 const changeBG = () => {
   bgState = contrastCalcYIQ(colour.Colour);
   if (bgState) {
