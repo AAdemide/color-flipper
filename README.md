@@ -7,4 +7,4 @@ Cycle through dynamic colors and schemes fetched from an api
 ![image](https://github.com/user-attachments/assets/2596f519-45d0-4a4b-ba0d-b5d1549f34b4) ![image](https://github.com/user-attachments/assets/e4b09e80-fd8b-4c6a-a62b-04be392dae95)
 
 
-Dynamic app that changes color of fonts and element's background to maintain contrast and displays the name of a colorif it has one.
+Dynamic app that changes color of fonts and elements' backgrounds to maintain contrast.
