@@ -60,9 +60,3 @@ A dynamic web application designed to provide an interactive and seamless experi
 - Add a feature to save favorite color schemes.
 - Improve accessibility with keyboard shortcuts and ARIA labels.
 - Integrate additional APIs for more diverse color inspirations.
-
----
-
-## License
-This project is licensed under the MIT License. See the LICENSE file for more details.
-
